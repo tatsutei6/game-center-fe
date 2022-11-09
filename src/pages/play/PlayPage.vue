@@ -1,6 +1,8 @@
 <template>
-  <PlayGround v-if='$store.state.play.status==="playing"' />
-  <MatchingSquare v-else />
+    <PlayGround v-if='$store.state.play.status==="playing"' />
+    <MatchingSquare v-else />
+    <ResultBoard v-if="$store.state.play.loser !== 'none'" />
+
 </template>
 
 <script>
@@ -14,6 +16,7 @@ import PlayGround from '@/components/PlayGround'
 import { onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 import MatchingSquare from '@/components/MatchingSquare.vue'
+import ResultBoard from '@/components/ResultBoard.vue'
 
 const store = useStore()
 let socket = undefined
@@ -75,12 +78,13 @@ const handleMatchSuccessEvent = (data) => {
 const handleMoveEvent = (data) => {
   const gameMap = store.state.play.gameMapObject
   console.log('move event')
+  console.log('move data', data)
   console.log('move.gameMap', gameMap)
-  const [snake1, snake2] = gameMap.snakes
+  const [snake0, snake1] = gameMap.snakes
   const { aDirection, bDirection } = data
   // 更新蛇的方向，方向信息是由服务器发来的，已经经过了isGameOver（游戏是否结束）的验证
-  snake1.setDirection(aDirection)
-  snake2.setDirection(bDirection)
+  snake0.setDirection(aDirection)
+  snake1.setDirection(bDirection)
   console.log('move event aDirection', aDirection)
   console.log('move event bDirection', bDirection)
 }
@@ -89,13 +93,14 @@ const handleResultEvent = (data) => {
   console.log('result event')
   console.log('result.data', data)
   const gameMap = store.state.play.gameMapObject
-  const [snake1, snake2] = gameMap.snakes
+  console.log('result.gameMap', gameMap)
+  const [snake0, snake1] = gameMap.snakes
   const { loser } = data
   if (loser === 'all' || loser === 'A') {
-    snake1.status = 'over'
+    snake0.status = 'over'
   }
   if (loser === 'all' || loser === 'B') {
-    snake2.status = 'over'
+    snake1.status = 'over'
   }
   // 将loser的信息更新到vuex中
   store.commit('updateLoser', loser)

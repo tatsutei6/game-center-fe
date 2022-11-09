@@ -29,7 +29,7 @@ onMounted(() => {
 
 </script>
 <style scoped>
-div.game-map {
+.game-map {
   width: 100%;
   height: 100%;
   display: flex;

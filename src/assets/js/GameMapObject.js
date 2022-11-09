@@ -25,37 +25,7 @@ export class GameMapObject extends GameObject {
             new Snake({ id: 0, color: '#4876EC', row: aRow, column: aColumn }, this),
             new Snake({ id: 1, color: '#F94848', row: bRow, column: bColumn }, this)
         ]
-
-
     }
-
-    /**
-     * 判断是否游戏结束
-     */
-    isGameOver(cell) {
-        // 撞到墙gameOver
-        for (const wall of this.walls) {
-            if (wall.row === cell.row && wall.column === cell.column)
-                return true
-        }
-
-        // 撞到自己或者对方gameOver
-        for (const snake of this.snakes) {
-            let k = snake.cells.length
-            // 如果蛇尾不增加，则不判断是否碰撞蛇尾
-            if (!snake.isExpandTail()) {
-                k--
-            }
-            // 判断是否碰撞蛇身
-            for (let i = 0; i < k; i++) {
-                if (cell.r === snake.cells[i].row && cell.c === snake.cells[i].column) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
     /**
      * 生成墙和障碍物
      */

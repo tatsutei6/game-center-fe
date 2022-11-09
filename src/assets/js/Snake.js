@@ -102,10 +102,11 @@ export class Snake extends GameObject {
             this.cells[i] = JSON.parse(JSON.stringify(this.cells[i - 1]))
         }
 
+        // 判断逻辑放到后端判断
         // 蛇撞墙或者撞到蛇身（自己或对方）
-        if (this.gameMap.isGameOver(this.nextCell)) {
-            this.status = 'over'
-        }
+        // if (this.gameMap.isGameOver(this.nextCell)) {
+        //     this.status = 'over'
+        // }
     }
 
     /**

@@ -7,9 +7,11 @@ export default {
         // 游戏地图Array，1为障碍物或者墙，0为空地
         gameMapArray: [[]],
         aId: 0,
+        aName:'',
         aRow: 0,
         aColumn: 0,
         bId: 0,
+        bName:'',
         bRow: 0,
         bColumn: 0,
         // 游戏地图canvas对象
@@ -34,9 +36,11 @@ export default {
         updateGameInfo(state, gameInfo) {
             state.gameMapArray = gameInfo.gameMapArray
             state.aId = gameInfo.aId
+            state.aName = gameInfo.aName
             state.aRow = gameInfo.aRow
             state.aColumn = gameInfo.aColumn
             state.bId = gameInfo.bId
+            state.bName = gameInfo.bName
             state.bRow = gameInfo.bRow
             state.bColumn = gameInfo.bColumn
         },

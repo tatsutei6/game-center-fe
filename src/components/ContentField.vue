@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-div.content-field {
+.content-field {
   margin-top: 15px;
 }
 
