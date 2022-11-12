@@ -16,7 +16,7 @@ export class Snake extends GameObject {
         this.cells = [new Cell(info.row, info.column)]
 
         // 蛇的移动的下个位置
-        this.nextCell = undefined
+        this.nextCell = null
 
         // 蛇每秒走5个格子
         this.speed = 5
@@ -121,7 +121,7 @@ export class Snake extends GameObject {
         if (this.isDest(start, dest)) {
             this.status = 'idle'
             this.cells[0] = this.nextCell
-            this.nextCell = undefined
+            this.nextCell = null
             if (!this.isExpandTail()) {
                 this.cells.pop()
             }

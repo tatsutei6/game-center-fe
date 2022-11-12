@@ -19,7 +19,7 @@ import MatchingSquare from '@/components/MatchingSquare.vue'
 import ResultBoard from '@/components/ResultBoard.vue'
 
 const store = useStore()
-let socket = undefined
+let socket = null
 const token = store.state.user.token || localStorage.getItem('jwt_token')
 onMounted(() => {
   store.commit('updateOpponent', {
