@@ -32,7 +32,7 @@
                 </el-form-item>
                 <el-form-item label='Bot Code'>
                   <el-input type='textarea'
-                            v-model='botForModal.content' rows='12' />
+                            v-model='botForModal.code' rows='12' />
                 </el-form-item>
               </el-form>
               <div class='error-message' style='text-align:right'>{{ message }}</div>
@@ -124,7 +124,7 @@ const onUpdate = (bot) => {
   dialogFormVisible.value = true
   botForModal.title = bot.title
   botForModal.description = bot.description
-  botForModal.content = bot.content
+  botForModal.code = bot.code
 }
 
 const onCreate = () => {
@@ -132,7 +132,7 @@ const onCreate = () => {
   dialogTitle.value = 'Botの作成'
   botForModal.title = ''
   botForModal.description = ''
-  botForModal.content = ''
+  botForModal.code = ''
   message.value = ''
 }
 
@@ -145,7 +145,7 @@ const addBot = () => {
   axios.post('http://127.0.0.1:8080/play/bot/add', {
     title: botForModal.title,
     description: botForModal.description,
-    content: botForModal.content
+    code: botForModal.code
   }, {
     headers: {
       Authorization: 'Bearer ' + token
@@ -153,7 +153,7 @@ const addBot = () => {
   }).then(response => {
     const responseData = response.data
     if (responseData.message === 'success') {
-      botForModal.content = ''
+      botForModal.code = ''
       botForModal.description = ''
       botForModal.title = ''
       message.value = ''

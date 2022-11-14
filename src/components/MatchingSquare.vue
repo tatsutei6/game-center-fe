@@ -56,7 +56,7 @@ const onClickMatchBtn = () => {
     matchBtnText.value = "取消";
     store.state.play.socket.send(JSON.stringify({
       event: "start-matching",
-      bot_id: selectedBotId.value,
+      botId: selectedBotId.value,
     }))
   } else {
     matchBtnText.value = "开始匹配";

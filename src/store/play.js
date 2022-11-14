@@ -24,8 +24,8 @@ export default {
             state.socket = socket
         },
         updateOpponent(state, opponent) {
-            state.opponentUsername = opponent.username
-            state.opponentAvatarUrl = opponent.avatarUrl
+            state.opponentUsername = opponent.opponentUsername
+            state.opponentAvatarUrl = opponent.opponentAvatarUrl
         },
         updateStatus(state, status) {
             state.status = status

@@ -59,30 +59,6 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-
-          <!--          <li class='nav-item dropdown'>-->
-          <!--            <a-->
-          <!--                class='nav-link dropdown-toggle'-->
-          <!--                href='#'-->
-          <!--                id='navbarDropdown'-->
-          <!--                role='button'-->
-          <!--                data-bs-toggle='dropdown'-->
-          <!--                aria-expanded='false'-->
-          <!--            >-->
-          <!--              {{ $store.state.user.username }}-->
-          <!--            </a>-->
-          <!--            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>-->
-          <!--              <li>-->
-          <!--                <router-link class='dropdown-item' :to="{name: 'bot'}">Bot</router-link>-->
-          <!--              </li>-->
-          <!--              <li>-->
-          <!--                <hr class='dropdown-divider' />-->
-          <!--              </li>-->
-          <!--              <li>-->
-          <!--                <a class='dropdown-item' href='#' @click='logout'>ログアウト</a>-->
-          <!--              </li>-->
-          <!--            </ul>-->
-          <!--          </li>-->
         </ul>
         <ul class='navbar-nav' v-else>
           <li class='nav-item'>

@@ -1,7 +1,7 @@
 <template>
-    <PlayGround v-if='$store.state.play.status==="playing"' />
-    <MatchingSquare v-else />
-    <ResultBoard v-if="$store.state.play.loser !== 'none'" />
+  <PlayGround v-if='$store.state.play.status==="playing"' />
+  <MatchingSquare v-else />
+  <ResultBoard v-if="$store.state.play.loser !== 'none'" />
 
 </template>
 
@@ -22,9 +22,10 @@ const store = useStore()
 let socket = null
 const token = store.state.user.token || localStorage.getItem('jwt_token')
 onMounted(() => {
+
   store.commit('updateOpponent', {
-    username: '対戦相手',
-    avatarUrl: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
+    opponentUsername: '対戦相手',
+    opponentAvatarUrl: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
   })
 
 
@@ -65,14 +66,14 @@ const handleMatchSuccessEvent = (data) => {
   console.log('match-success.data', data)
   // 将对手信息更新到vuex中
   store.commit('updateOpponent', {
-    username: data.opponentUsername,
-    avatarUrl: data.opponentAvatarUrl
+    opponentUsername: data.opponentUsername,
+    opponentAvatarUrl: data.opponentAvatarUrl
   })
   const { gameInfo } = data
   store.commit('updateGameInfo', gameInfo)
   setTimeout(() => {
     store.commit('updateStatus', 'playing')
-  }, 1500)
+  }, 1000)
 }
 
 const handleMoveEvent = (data) => {
@@ -111,6 +112,7 @@ onUnmounted(() => {
     socket.close()
   }
   store.commit('updateStatus', 'matching')
+  store.commit('updateLoser', 'none')
 })
 </script>
 

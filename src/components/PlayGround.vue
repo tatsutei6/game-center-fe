@@ -1,7 +1,7 @@
 <template>
   <div class='playground-header'>
-    <span>A: {{$store.state.play.aId}} - {{$store.state.play.aName}}</span>
-    <span>B: {{$store.state.play.bId}} - {{$store.state.play.bName}}</span>
+    <span>Blue: {{$store.state.play.aId}} - {{$store.state.play.aName}}</span>
+    <span>Red: {{$store.state.play.bId}} - {{$store.state.play.bName}}</span>
   </div>
   <div class="playground-content">
     <GameMap/>
