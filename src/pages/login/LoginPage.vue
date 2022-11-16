@@ -27,7 +27,6 @@ import ContentField from '@/components/ContentField'
 export default {
   name: 'LoginPage',
   components: { ContentField }
-
 }
 </script>
 <script setup>

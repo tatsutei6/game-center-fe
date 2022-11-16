@@ -37,8 +37,8 @@ const restart = () => {
   store.commit('updateStatus', 'matching')
   store.commit('updateLoser', 'none')
   store.commit('updateOpponent', {
-    opponentUsername: '対戦相手',
-    opponentAvatarUrl: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
+    opponentName: '対戦相手',
+    opponentPhoto: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
   })
 }
 

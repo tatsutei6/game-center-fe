@@ -23,9 +23,11 @@ let socket = null
 const token = store.state.user.token || localStorage.getItem('jwt_token')
 onMounted(() => {
 
+  store.commit('updateIsRecord', false)
+
   store.commit('updateOpponent', {
-    opponentUsername: '対戦相手',
-    opponentAvatarUrl: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
+    opponentName: '対戦相手',
+    opponentPhoto: 'https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png'
   })
 
 
@@ -66,8 +68,8 @@ const handleMatchSuccessEvent = (data) => {
   console.log('match-success.data', data)
   // 将对手信息更新到vuex中
   store.commit('updateOpponent', {
-    opponentUsername: data.opponentUsername,
-    opponentAvatarUrl: data.opponentAvatarUrl
+    opponentName: data.opponentName,
+    opponentPhoto: data.opponentPhoto
   })
   const { gameInfo } = data
   store.commit('updateGameInfo', gameInfo)

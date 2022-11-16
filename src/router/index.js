@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PlayPage from '@/pages/play/PlayPage.vue'
 import RecordPage from '@/pages/record/RecordPage.vue'
-import RankPage from '@/pages/rank/RankPage.vue'
+import RecordReplayPage from '@/pages/record/RecordReplayPage.vue'
 import UserPage from '@/pages/user/UserPage.vue'
 import NotFoundPage from '@/pages/error/NotFoundPage.vue'
 import LoginPage from '@/pages/login/LoginPage'
@@ -35,13 +35,14 @@ const routes = [
         }
     },
     {
-        path: '/rank/',
-        name: 'rank',
-        component: RankPage,
+        path: '/replay/:recordId/',
+        name: 'replay',
+        component: RecordReplayPage,
         meta: {
             requireAuth: true
         }
     },
+
     {
         path: '/user/',
         name: 'user',

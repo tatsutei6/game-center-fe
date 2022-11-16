@@ -1,37 +1,55 @@
 <template>
-  <div class='playground-header'>
-    <span>Blue: {{$store.state.play.aId}} - {{$store.state.play.aName}}</span>
-    <span>Red: {{$store.state.play.bId}} - {{$store.state.play.bName}}</span>
+  <div class='playground-header' v-if='$store.state.record.isRecord'>
+    <span>Blue:&nbsp;&nbsp;<img :src='$store.state.record.aPhoto' alt='' class='playground-player-photo'>
+      &nbsp;&nbsp;{{ $store.state.record.aName }}
+    </span>
+    <span>Red:&nbsp;&nbsp;<img :src='$store.state.record.bPhoto' alt='' class='playground-player-photo'>
+      &nbsp;&nbsp;{{ $store.state.record.bName }}
+    </span>
   </div>
-  <div class="playground-content">
-    <GameMap/>
+  <div class='playground-header' v-else>
+    <span>Blue:&nbsp;&nbsp;<img :src='$store.state.play.aPhoto' alt='' class='playground-player-photo'>
+      &nbsp;&nbsp;{{ $store.state.play.aName }}
+    </span>
+    <span>Red:&nbsp;&nbsp;<img :src='$store.state.play.bPhoto' alt='' class='playground-player-photo'>
+      &nbsp;&nbsp;{{ $store.state.play.bName }}
+    </span>
+  </div>
+  <div class='playground-content'>
+    <GameMap />
   </div>
 </template>
 
 
 <script>
 export default {
-  name: "PlayGround"
+  name: 'PlayGround'
 }
 </script>
 
 <script setup>
-  import GameMap from "@/components/GameMap";
+import GameMap from '@/components/GameMap'
 
 </script>
 
 <style scoped>
-.playground-header{
+.playground-header {
   text-align: center;
   margin-top: 5px;
 }
-.playground-header span{
+
+.playground-header span {
   margin-left: 40px;
 }
+
 .playground-content {
   width: 70vw;
   height: 85vh;
   margin: 20px auto;
   background-color: lightblue;
+}
+img.playground-player-photo {
+  width: 4vh;
+  border-radius: 50%;
 }
 </style>

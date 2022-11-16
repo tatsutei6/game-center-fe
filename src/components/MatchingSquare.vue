@@ -12,7 +12,7 @@
       <div class='col-4'>
         <div class='user-select-bot'>
           <select v-model='selectedBotId' class='form-select' aria-label='Default select example'>
-            <option value='-1' selected>亲自出马</option>
+            <option value='-1' selected>本人出陣</option>
             <option v-for='bot in bots' :key='bot.id' :value='bot.id'>
               {{ bot.title }}
             </option>
@@ -21,10 +21,10 @@
       </div>
       <div class='col-4'>
         <div class='user-photo'>
-          <img :src='$store.state.play.opponentAvatarUrl' alt=''>
+          <img :src='$store.state.play.opponentPhoto' alt=''>
         </div>
         <div class='user-username'>
-          {{ $store.state.play.opponentUsername }}
+          {{ $store.state.play.opponentName }}
         </div>
       </div>
       <div class='col-12' style='text-align: center; padding-top: 15vh;'>

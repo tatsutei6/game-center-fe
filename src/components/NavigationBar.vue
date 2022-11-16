@@ -33,15 +33,10 @@
           <li class='nav-item'>
             <router-link :class="routeName === 'record' ? 'nav-link active' : 'nav-link'"
                          :to="{name: 'record'}">
-              対戦リスト
+              対戦履歴
             </router-link>
           </li>
-          <li class='nav-item'>
-            <router-link :class="routeName === 'rank' ? 'nav-link active' : 'nav-link'"
-                         :to="{name: 'rank'}">
-              プレーヤーランキング
-            </router-link>
-          </li>
+
         </ul>
         <ul class='navbar-nav' v-if='$store.state.user.isLogin'>
           <el-dropdown trigger='click'>

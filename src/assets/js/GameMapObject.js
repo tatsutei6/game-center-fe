@@ -18,7 +18,7 @@ export class GameMapObject extends GameObject {
 
         this.walls = []
 
-        const {aRow,aColumn,bRow,bColumn} = vuexStore.state.play
+        const { aRow, aColumn, bRow, bColumn } = vuexStore.state.play
 
         // 蛇
         this.snakes = [
@@ -26,6 +26,7 @@ export class GameMapObject extends GameObject {
             new Snake({ id: 1, color: '#F94848', row: bRow, column: bColumn }, this)
         ]
     }
+
     /**
      * 生成墙和障碍物
      */
@@ -49,35 +50,62 @@ export class GameMapObject extends GameObject {
      * 增加事件监听
      */
     addListeningEvents() {
-        // 将焦点移动到canvas上，才能监听键盘事件
-        this.ctx.canvas.focus()
-        // 监听键盘事件
-        this.ctx.canvas.addEventListener('keydown', (e) => {
-            let d = -1
-            if (e.key === 'w') {
-                d = 0
-            } else if (e.key === 'd') {
-                d = 1
-            } else if (e.key === 's') {
-                d = 2
-            } else if (e.key === 'a') {
-                d = 3
-            } else if (e.key === 'ArrowUp') {
-                d = 0
-            } else if (e.key === 'ArrowRight') {
-                d = 1
-            } else if (e.key === 'ArrowDown') {
-                d = 2
-            } else if (e.key === 'ArrowLeft') {
-                d = 3
-            }
-            if (d >= 0) {
-                this.vuexStore.state.play.socket.send(JSON.stringify({
-                    event: 'move',
-                    direction: d
-                }))
-            }
-        })
+        // 通过setInterval来还原录像
+        if (this.vuexStore.state.record.isRecord) {
+            console.log('this.vuexStore.state.record.isRecord', this.vuexStore.state.record.isRecord)
+            let k = 0
+
+            const aSteps = this.vuexStore.state.record.aSteps
+            const bSteps = this.vuexStore.state.record.bSteps
+            const loser = this.vuexStore.state.record.recordLoser
+            const [snake0, snake1] = this.snakes
+
+            const intervalId = setInterval(() => {
+                if (k >= aSteps.length - 1) {
+                    if (loser === 'all' || loser === 'A') {
+                        snake0.status = 'over'
+                    }
+                    if (loser === 'all' || loser === 'B') {
+                        snake1.status = 'over'
+                    }
+                    clearInterval(intervalId)
+                } else {
+                    snake0.setDirection(parseInt(aSteps[k]))
+                    snake1.setDirection(parseInt(bSteps[k]))
+                }
+                k++
+            }, 500)
+        } else {
+            // 将焦点移动到canvas上，才能监听键盘事件
+            this.ctx.canvas.focus()
+            // 监听键盘事件
+            this.ctx.canvas.addEventListener('keydown', (e) => {
+                let d = -1
+                if (e.key === 'w') {
+                    d = 0
+                } else if (e.key === 'd') {
+                    d = 1
+                } else if (e.key === 's') {
+                    d = 2
+                } else if (e.key === 'a') {
+                    d = 3
+                } else if (e.key === 'ArrowUp') {
+                    d = 0
+                } else if (e.key === 'ArrowRight') {
+                    d = 1
+                } else if (e.key === 'ArrowDown') {
+                    d = 2
+                } else if (e.key === 'ArrowLeft') {
+                    d = 3
+                }
+                if (d >= 0) {
+                    this.vuexStore.state.play.socket.send(JSON.stringify({
+                        event: 'move',
+                        direction: d
+                    }))
+                }
+            })
+        }
     }
 
     start() {
