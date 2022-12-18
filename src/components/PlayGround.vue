@@ -1,18 +1,18 @@
 <template>
   <div class='playground-header' v-if='$store.state.record.isRecord'>
-    <span>Blue:&nbsp;&nbsp;<img :src='$store.state.record.aPhoto' alt='' class='playground-player-photo'>
-      &nbsp;&nbsp;{{ $store.state.record.aName }}
+    <span>Blue:<img style='margin-left: 5px;margin-right: 5px' :src='$store.state.record.aPhoto' alt='' class='playground-player-photo'>
+      {{ $store.state.record.aName }}
     </span>
-    <span>Red:&nbsp;&nbsp;<img :src='$store.state.record.bPhoto' alt='' class='playground-player-photo'>
-      &nbsp;&nbsp;{{ $store.state.record.bName }}
+    <span>Red:<img style='margin-left: 5px;margin-right: 5px' :src='$store.state.record.bPhoto' alt='' class='playground-player-photo'>
+      {{ $store.state.record.bName }}
     </span>
   </div>
   <div class='playground-header' v-else>
-    <span>Blue:&nbsp;&nbsp;<img :src='$store.state.play.aPhoto' alt='' class='playground-player-photo'>
-      &nbsp;&nbsp;{{ $store.state.play.aName }}
+    <span>Blue:<img style='margin-left: 5px;margin-right: 5px' :src='$store.state.play.aPhoto' alt='' class='playground-player-photo'>
+      {{ $store.state.play.aName }}
     </span>
-    <span>Red:&nbsp;&nbsp;<img :src='$store.state.play.bPhoto' alt='' class='playground-player-photo'>
-      &nbsp;&nbsp;{{ $store.state.play.bName }}
+    <span>Red:<img style='margin-left: 5px;margin-right: 5px' :src='$store.state.play.bPhoto' alt='' class='playground-player-photo'>
+      {{ $store.state.play.bName }}
     </span>
   </div>
   <div class='playground-content'>
