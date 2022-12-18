@@ -2,7 +2,6 @@
   <div ref='parent' class='game-map'>
     <canvas ref='canvas' tabindex='0'></canvas>
   </div>
-
 </template>
 
 <script>
@@ -14,12 +13,9 @@ export default {
 import { ref, onMounted } from 'vue'
 import { GameMapObject } from '@/assets/js/GameMapObject'
 import { useStore } from 'vuex'
-// import { GameMapObject } from '@/assets/js/GameMapObject'
-
 
 const parent = ref(null)
 const canvas = ref(null)
-
 
 onMounted(() => {
   const store = useStore()

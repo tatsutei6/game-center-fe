@@ -1,4 +1,4 @@
-const GAME_OBJECTS = []
+import { GAME_OBJECTS } from '@/assets/js/index'
 
 export class GameObject {
     constructor() {
@@ -35,8 +35,7 @@ export class GameObject {
         this.onDestroy()
 
         for (let i = 0; i < GAME_OBJECTS.length; i++) {
-            const ele = GAME_OBJECTS[i]
-            if (ele === this) {
+            if (GAME_OBJECTS[i] === this) {
                 GAME_OBJECTS.splice(i)
                 break
             }
@@ -44,23 +43,3 @@ export class GameObject {
     }
 }
 
-// 前回実行したタイムスタンプ
-let lastRunTimestamp
-const step = timestamp => {
-    // 遍历所有游戏对象
-    for (let ele of GAME_OBJECTS) {
-        // 如果游戏对象处于非"开始"状态，就调用start方法
-        if (!ele.started) {
-            ele.started = true
-            ele.start()
-        } else {
-            ele.timeDelta = timestamp - lastRunTimestamp
-            ele.update()
-        }
-    }
-
-    lastRunTimestamp = timestamp
-    requestAnimationFrame(step)
-}
-
-requestAnimationFrame(step)
