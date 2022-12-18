@@ -29,7 +29,8 @@ export class Snake extends GameObject {
         // 4个方向列的偏移量
         this.dColumns = [0, 1, 0, -1]
         // 允许的误差
-        this.eps = 1e-2
+        this.eps = 0.02
+        // this.eps = 1e-2
         // 蛇两只眼睛的x的偏移量
         this.eyeDx = [
             [-1, 1],
@@ -46,14 +47,11 @@ export class Snake extends GameObject {
         ]
         // 回合数
         this.round = 0
-        // 允许的误差
-        this.eps = 1e-2
 
         this.eyeDirection = 0
         if (this.id === 1) {
             this.eyeDirection = 2  // 左下角的蛇初始朝上，右上角的蛇朝下
         }
-
     }
 
     start() {
@@ -162,7 +160,8 @@ export class Snake extends GameObject {
      */
     isDest(start, dest) {
         const distance = this.countDistance(start, dest)
-        return distance <= this.eps
+        // 到达目标点，将distance <= this.eps改为distance < this.eps，为了兼容safari浏览器
+        return distance < this.eps
     }
 
     /**
@@ -233,7 +232,5 @@ export class Snake extends GameObject {
             _ctx.arc(eyeX, eyeY, _L * 0.05, 0, Math.PI * 2)
             _ctx.fill()
         }
-
-
     }
 }

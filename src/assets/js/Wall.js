@@ -3,7 +3,6 @@ import { GameObject } from './GameObject'
 export class Wall extends GameObject {
     constructor(r, c, gameMap) {
         super()
-
         this.row = r
         this.column = c
         this.gameMap = gameMap
